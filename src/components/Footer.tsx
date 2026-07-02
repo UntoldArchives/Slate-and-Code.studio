@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import Year from "@/components/Year";
+import FooterWordmark from "@/components/FooterWordmark";
 
 export default function Footer() {
   return (
@@ -75,6 +76,11 @@ export default function Footer() {
           </p>
           <p className="micro text-fog/70">Working with brands worldwide</p>
         </div>
+      </div>
+
+      {/* Full-bleed closing beat: giant outline wordmark anchored to the page end */}
+      <div className="-mb-[1vw] mt-4">
+        <FooterWordmark />
       </div>
     </footer>
   );

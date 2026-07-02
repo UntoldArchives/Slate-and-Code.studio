@@ -11,10 +11,11 @@ import { ButtonLight, ArrowIcon } from "@/components/Buttons";
 import Magnetic from "@/components/Magnetic";
 import WaveBackground from "@/components/home/WaveBackground";
 
-// Centered staircase headline — one line solid, one outlined, one gold
-const LINES = [
+// Centered staircase headline, one line solid, one outlined, one gold.
+// fill flags the outlined line for the hover ink-fill sweep.
+const LINES: { text: string; className: string; fill?: boolean }[] = [
   { text: "Designer", className: "text-ivory" },
-  { text: "Developer", className: "text-outline" },
+  { text: "Developer", className: "text-outline", fill: true },
   { text: "Director", className: "text-pit" },
 ];
 
@@ -83,7 +84,21 @@ export default function Hero() {
                 }}
                 className={`block ${l.className}`}
               >
-                {l.text}
+                {l.fill && !reduce ? (
+                  <span className="group relative inline-block">
+                    {l.text}
+                    {/* Ink fill: gradient twin clipped to zero width, swept open on hover.
+                        Stroke is inherited from text-outline, so zero it here. */}
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-r from-gold to-ivory bg-clip-text text-transparent [-webkit-text-stroke:0] [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[clip-path:inset(0_0_0_0)] group-hover:duration-[650ms]"
+                    >
+                      {l.text}
+                    </span>
+                  </span>
+                ) : (
+                  l.text
+                )}
               </motion.span>
             </span>
           ))}

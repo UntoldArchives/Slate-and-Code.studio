@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ParallaxPreview from "@/components/ParallaxPreview";
 import Reveal from "@/components/Reveal";
 import ScrollFade from "@/components/ScrollFade";
 import SectionHeading from "@/components/SectionHeading";
@@ -108,9 +109,12 @@ function ProjectCard({
             : "h-56 sm:h-64"
         }`}
       >
-        <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.025]">
-          {project.preview}
-        </div>
+        {/* Scroll drift underneath, hover zoom on top: both transforms survive */}
+        <ParallaxPreview>
+          <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.025]">
+            {project.preview}
+          </div>
+        </ParallaxPreview>
       </div>
 
       <div className="relative flex flex-1 flex-col p-6 sm:p-7">
@@ -179,6 +183,7 @@ function ProjectCard({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${project.name}, visit live site`}
+          data-cursor-label="Visit"
           className={shellClass}
         >
           {inner}

@@ -250,6 +250,19 @@ html.lenis body {
   }
 }
 
+/* ——— Custom blueprint cursor ———
+   CustomCursor.tsx sets this class only for fine pointers without reduced
+   motion. Form fields keep the native cursor so text editing stays legible. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select {
+  cursor: auto !important;
+}
+
 /* ——— One-shot sheen sweep on solid CTAs ——— */
 .btn-sheen {
   position: relative;

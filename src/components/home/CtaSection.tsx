@@ -1,17 +1,8 @@
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
+import CornerTicks from "@/components/home/CornerTicks";
 import { ButtonGold, ButtonSecondary, InstagramIcon } from "@/components/Buttons";
 import { SITE } from "@/lib/site";
-
-/** Blueprint-style crosshair tick pinned to a card corner */
-function CornerTick({ className }: { className: string }) {
-  return (
-    <span aria-hidden className={`pointer-events-none absolute h-3.5 w-3.5 ${className}`}>
-      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gold/40" />
-      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gold/40" />
-    </span>
-  );
-}
 
 export default function CtaSection() {
   return (
@@ -23,10 +14,7 @@ export default function CtaSection() {
             <div className="grid-faint mask-fade absolute inset-0" aria-hidden />
             <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[640px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-gold/[0.07] blur-[100px]" />
 
-            <CornerTick className="left-3 top-3" />
-            <CornerTick className="right-3 top-3" />
-            <CornerTick className="bottom-3 left-3" />
-            <CornerTick className="bottom-3 right-3" />
+            <CornerTicks />
 
             <p className="micro relative text-gold">Start a Project</p>
             <h2 className="relative mx-auto mt-6 max-w-3xl font-display text-[2.2rem] font-semibold leading-[1.1] text-ivory sm:text-5xl lg:text-[3.4rem]">

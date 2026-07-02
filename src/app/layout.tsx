@@ -4,6 +4,8 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
+import ConsoleSignature from "@/components/ConsoleSignature";
 import { SITE } from "@/lib/site";
 
 const inter = Inter({
@@ -84,6 +86,8 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <div aria-hidden className="intro-fade" />
+        <CustomCursor />
+        <ConsoleSignature />
       </body>
     </html>
   );

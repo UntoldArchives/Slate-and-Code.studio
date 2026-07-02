@@ -2,11 +2,11 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import SpotlightCard from "@/components/SpotlightCard";
 
-/** Identity rows for the studio card — kept anonymous, studio-voiced. */
+/** Compact studio facts: value first, micro label as the annotation. */
 const FACTS = [
   { label: "Disciplines", value: "Design · Develop · Direct" },
-  { label: "Works with", value: "Brands worldwide" },
-  { label: "The way I work", value: "One point of contact, start to finish" },
+  { label: "Reach", value: "Brands worldwide" },
+  { label: "Contact", value: "One person, start to finish" },
 ];
 
 export default function About() {
@@ -59,13 +59,21 @@ export default function About() {
           {/* Studio card */}
           <Reveal delay={0.12}>
             <SpotlightCard color="gold" className="h-full rounded-lg">
-              <div className="relative h-full overflow-hidden rounded-lg border border-line bg-surface p-8">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-lg border border-line bg-surface p-8">
+                {/* The brand mark as the card's graphic: an oversized serif
+                    ampersand bleeding off the corner, seated in a gold bloom */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-gold/[0.06] blur-[60px]"
+                  className="pointer-events-none absolute -right-10 -top-14 h-56 w-56 rounded-full bg-gold/[0.07] blur-[70px]"
                 />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-6 -top-24 select-none font-serif text-[15rem] italic leading-none text-gold/[0.08]"
+                >
+                  &amp;
+                </span>
 
-                <div className="flex items-center gap-3">
+                <div className="relative flex items-center gap-3">
                   <span className="block h-2 w-2 rotate-45 bg-gold" />
                   <span className="font-display text-sm font-semibold tracking-[0.18em] text-ivory">
                     SLATE <span className="text-gold">&amp;</span> CODE
@@ -75,35 +83,41 @@ export default function About() {
                   </span>
                 </div>
 
-                <p className="mt-5 font-serif text-xl italic leading-snug text-ivory/85">
-                  Designed, developed, and directed by hand.
+                <p className="relative mb-10 mt-8 max-w-[21ch] font-serif text-[1.7rem] italic leading-[1.3] text-ivory/90">
+                  Designed, developed, and directed{" "}
+                  <span className="whitespace-nowrap text-gold">by hand</span>.
                 </p>
 
-                <dl className="mt-7 space-y-4 border-t border-line pt-6">
+                {/* Meta rows read value first; the label annotates from the
+                    right edge like a drafting note */}
+                <dl className="relative mt-auto space-y-4 border-t border-line pt-6">
                   {FACTS.map((f) => (
-                    <div
-                      key={f.label}
-                      className="flex items-start justify-between gap-6"
-                    >
-                      <dt className="micro shrink-0 text-fog">{f.label}</dt>
-                      <dd className="text-right text-[13px] leading-relaxed text-ivory/85">
+                    <div key={f.label} className="flex items-center gap-3">
+                      <span
+                        aria-hidden
+                        className="h-1.5 w-1.5 shrink-0 rotate-45 bg-gold/70"
+                      />
+                      {/* Labels annotate from sm: up; phones keep them for
+                          screen readers but the values speak for themselves */}
+                      <dt className="micro order-last ml-auto shrink-0 text-fog/80 max-sm:sr-only">
+                        {f.label}
+                      </dt>
+                      <dd className="text-[13px] leading-relaxed text-ivory/85">
                         {f.value}
                       </dd>
                     </div>
                   ))}
-
-                  <div className="flex items-center justify-between gap-6 border-t border-line pt-5">
-                    <dt className="micro shrink-0 text-fog">Availability</dt>
-                    <dd>
-                      <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/[0.07] px-3 py-1">
-                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-                        <span className="text-[11px] font-semibold tracking-wide text-gold">
-                          Open for projects
-                        </span>
-                      </span>
-                    </dd>
-                  </div>
                 </dl>
+
+                <div className="relative mt-6 flex items-center justify-between gap-6 border-t border-line pt-5">
+                  <span className="micro text-fog">Availability</span>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/[0.07] px-3 py-1">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold motion-reduce:animate-none" />
+                    <span className="text-[11px] font-semibold tracking-wide text-gold">
+                      Open for projects
+                    </span>
+                  </span>
+                </div>
               </div>
             </SpotlightCard>
           </Reveal>
