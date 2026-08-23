@@ -4,12 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
-import {
-  PiInstagramLogo,
-  PiYoutubeLogo,
-  PiTiktokLogo,
-  PiEnvelopeSimple,
-} from "react-icons/pi";
+import { PiInstagramLogo, PiEnvelopeSimple } from "react-icons/pi";
 import { LINKS, MAILTO } from "@/lib/links";
 import { scrollToTarget } from "@/lib/lenis";
 import { SET_WIDTH } from "@/lib/type";
@@ -33,10 +28,9 @@ const NAV = [
   { label: "Services", href: "/services", target: null },
 ];
 
+/* only the channels that exist: a glyph with nowhere to go is noise */
 const SOCIALS = [
   { href: LINKS.instagram, label: "Instagram", Icon: PiInstagramLogo },
-  { href: LINKS.youtube, label: "YouTube", Icon: PiYoutubeLogo },
-  { href: LINKS.tiktok, label: "TikTok", Icon: PiTiktokLogo },
   { href: MAILTO, label: "Email", Icon: PiEnvelopeSimple },
 ];
 
@@ -151,18 +145,21 @@ export default function Footer() {
           Available for new work
         </span>
         <div className="flex items-center gap-[clamp(16px,1.6vw,34px)]">
-          {SOCIALS.map(({ href, label, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={label}
-              target={href.startsWith("mailto:") ? undefined : "_blank"}
-              rel="noreferrer"
-              className="text-[var(--fg-70)] transition-colors duration-300 hover:text-accent"
-            >
-              <Icon className="size-[clamp(19px,1.35vw,28px)]" />
-            </a>
-          ))}
+          {SOCIALS.map(({ href, label, Icon }) => {
+            const external = !href.startsWith("mailto:");
+            return (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                className="text-[var(--fg-70)] transition-colors duration-300 hover:text-accent"
+              >
+                <Icon aria-hidden className="size-[clamp(19px,1.35vw,28px)]" />
+              </a>
+            );
+          })}
         </div>
       </div>
 
