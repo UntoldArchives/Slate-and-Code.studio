@@ -18,7 +18,7 @@ import { MaskReveal, WordsReveal } from "./reveal";
 /* Verbatim from the frame. The line breaks in the design fall out of this
    exact wording at this exact measure, so it is not to be "improved". */
 const STATEMENT = [
-  "A studio of one, there is no handoff where the idea gets watered down.",
+  "A studio of one. There is no handoff where the idea gets watered down.",
   "I care, in equal measure, about how a thing looks, how it is built, and how it makes someone feel.",
 ];
 

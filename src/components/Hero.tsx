@@ -102,7 +102,7 @@ export default function Hero() {
           1242px the frame sets, and the copy would break a word early */}
       <div className="gut shrink-0">
         <WordsReveal
-          text="Slate & Code Studio is a studio of design. The same person who designs the screen writes the code behind it and directs the content that fills it."
+          text="Slate & Code Studio is a studio of one, by design. The same person who designs the screen writes the code behind it and directs the content that fills it."
           className="w-[min(48.44vw,100%)] text-[length:clamp(15px,1.872vw,40px)] font-bold leading-[1.2] text-[var(--fg)] max-lg:w-[min(72vw,100%)]"
           delay={1.5}
           stagger={0.026}

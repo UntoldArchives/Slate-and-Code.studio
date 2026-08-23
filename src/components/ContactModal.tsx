@@ -87,8 +87,8 @@ export default function ContactModal() {
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
-    const subject = `Project inquiry${name ? ` — ${name}` : ""}`;
-    const body = `${message}\n\n— ${name}${email ? `\n${email}` : ""}`;
+    const subject = `Project inquiry${name ? ` from ${name}` : ""}`;
+    const body = `${message}\n\n${name}${email ? `\n${email}` : ""}`;
     window.location.href = `mailto:${LINKS.email}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
@@ -141,7 +141,7 @@ export default function ContactModal() {
                 {/* meta rail */}
                 <div className="flex items-center justify-between border-b border-[var(--rule)] px-[clamp(20px,3.2vw,40px)] py-[1em]">
                   <span className="micro text-[var(--fg-45)]">
-                    Inquiry — no handoffs
+                    Inquiry, no handoffs
                   </span>
                   <button
                     type="button"
@@ -237,7 +237,7 @@ export default function ContactModal() {
                         aria-live="polite"
                       >
                         {sent ? (
-                          "Your mail app has the message ready — hit send there."
+                          "Your mail app has the message ready. Hit send there."
                         ) : (
                           <>
                             Or write directly:{" "}
