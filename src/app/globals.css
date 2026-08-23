@@ -1,0 +1,380 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Typefaces — Thunder (display) + Neue Montreal (everything else).
+   Both are self-hosted from /public/fonts as woff2.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Thunder";
+  src: url("/fonts/Thunder-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Thunder";
+  src: url("/fonts/Thunder-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Thunder";
+  src: url("/fonts/Thunder-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Thunder";
+  src: url("/fonts/Thunder-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------------------
+   Tokens
+--------------------------------------------------------------------------- */
+
+@theme {
+  --color-ink: #0b0b0b;
+  --color-paper: #f1efea;
+  --color-accent: #ff4a17;
+
+  --font-thunder: "Thunder", "Haettenschweiler", "Arial Narrow", Impact, sans-serif;
+  --font-neue: "Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+:root {
+  /* 1px of the 2564px-wide Figma frame, kept for a few faithful offsets */
+  --fig: calc(100vw / 2564);
+
+  --gutter: clamp(18px, 2.5vw, 58px);
+  /* the hero and footer wordmarks run nearly edge to edge in the frame
+     (26px inset on 2564), well inside the normal page gutter */
+  --edge: clamp(8px, 1.01vw, 24px);
+
+  /* Fluid type scale. Every size has a floor and a ceiling so nothing
+     collapses on a laptop or balloons on a 4K panel. */
+  --fs-micro: clamp(9.5px, 0.6vw, 13px);
+  --fs-nav: clamp(11px, 0.68vw, 14px);
+  --fs-small: clamp(12px, 0.78vw, 16px);
+  --fs-body: clamp(14px, 0.95vw, 19px);
+  --fs-lead: clamp(17px, 1.32vw, 27px);
+  --fs-step: clamp(20px, 1.95vw, 40px);
+  --fs-about: clamp(24px, 4.212vw, 92px); /* About statement, 108px on 2564 */
+
+  /* 0 at the top of the page, 1 once the About section has taken over.
+     Both are driven by <Invert />; every colour below interpolates off them.
+     --p-fg lags and then snaps, so text never sits mid grey on mid grey. */
+  --p-invert: 0;
+  --p-fg: 0;
+
+  --bg: color-mix(in oklab, var(--color-paper) calc(var(--p-invert) * 100%), var(--color-ink));
+  --fg: color-mix(in oklab, var(--color-ink) calc(var(--p-fg) * 100%), var(--color-paper));
+
+  --fg-70: color-mix(in oklab, var(--fg) 70%, transparent);
+  --fg-45: color-mix(in oklab, var(--fg) 45%, transparent);
+  --fg-28: color-mix(in oklab, var(--fg) 28%, transparent);
+  --fg-14: color-mix(in oklab, var(--fg) 14%, transparent);
+  --rule: color-mix(in oklab, var(--fg) 16%, transparent);
+
+  /* Card surfaces. Mixed off --fg rather than a fixed hex so a card is always
+     a faint lift off whatever the page currently is: a hair lighter than ink
+     on the way down, a hair darker than paper once the page has flipped. A
+     literal colour here would go invisible in one of the two states. */
+  --surface: color-mix(in oklab, var(--fg) 4%, transparent);
+  --surface-hi: color-mix(in oklab, var(--fg) 7%, transparent);
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-neue);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------------
+   Small shared primitives
+--------------------------------------------------------------------------- */
+
+.gut {
+  padding-inline: var(--gutter);
+}
+
+/* uppercase micro label — nav items, edge captions, meta rows */
+.micro {
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Thunder display setting, used for every oversized word on the page */
+.display {
+  font-family: var(--font-thunder);
+  font-weight: 700;
+  /* 0.88 is the tightest leading that still clears Thunder's cap height
+     (cap 700 / asc 720 / desc 200 per 1000 em). Anything lower shaves the
+     tops off capitals inside an overflow-hidden reveal mask. */
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.animate-blink {
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   #method data field — the signal degradation pass.
+
+   A retro-broadcast treatment over the corrupted text field: chromatic
+   fringe, stepped jitter, slow drift, scanlines, a rolling scan band and a
+   weak-signal flicker. Everything that moves animates transform or opacity
+   only, so the field never leaves the compositor; the one paint-heavy
+   property (text-shadow) is static. steps(1, end) makes every displacement
+   a discrete snap — held, then gone — rather than a smooth wobble, which is
+   what separates a glitch from a float. All of it is switched off by the
+   prefers-reduced-motion rule at the bottom of this file.
+--------------------------------------------------------------------------- */
+
+/* chromatic aberration: a red and a cyan ghost, one pixel off the glyphs */
+.df-fringe {
+  text-shadow:
+    1px 0 rgba(255, 70, 90, 0.11),
+    -1px 0 rgba(90, 215, 255, 0.1);
+}
+
+/* the whole field breathes: brief stepped dips, like a weak signal.
+   Durations and delays are set per column inline, so nothing syncs up. */
+.df-flicker {
+  animation: df-flicker 12.7s steps(1, end) infinite;
+}
+@keyframes df-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  8.2% {
+    opacity: 0.88;
+  }
+  8.7% {
+    opacity: 1;
+  }
+  23.4% {
+    opacity: 0.93;
+  }
+  23.7% {
+    opacity: 1;
+  }
+  41.6% {
+    opacity: 0.72;
+  }
+  42.1% {
+    opacity: 0.96;
+  }
+  42.5% {
+    opacity: 1;
+  }
+  67.3% {
+    opacity: 0.9;
+  }
+  67.9% {
+    opacity: 1;
+  }
+  85.1% {
+    opacity: 0.84;
+  }
+  85.5% {
+    opacity: 1;
+  }
+}
+
+/* tracking errors: a column snaps a pixel or three sideways for 40–60ms,
+   then snaps back. At rest the vast majority of the cycle. */
+.df-jitter {
+  animation: df-jitter 10s steps(1, end) infinite;
+}
+@keyframes df-jitter {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  13% {
+    transform: translate(2px, 0) skewX(0.5deg);
+  }
+  13.5% {
+    transform: translate(-1px, 0);
+  }
+  14% {
+    transform: translate(0, 0);
+  }
+  36% {
+    transform: translate(-2px, 1px);
+  }
+  36.4% {
+    transform: translate(0, 0);
+  }
+  57% {
+    transform: translate(1px, -1px) skewX(-0.4deg);
+  }
+  57.6% {
+    transform: translate(3px, 0);
+  }
+  58.1% {
+    transform: translate(0, 0);
+  }
+  79% {
+    transform: translate(-1px, 0);
+  }
+  79.4% {
+    transform: translate(0, 0);
+  }
+}
+
+/* vertical roll: each column creeps up and back over a minute or so,
+   so the field is never quite the frame it was */
+.df-drift {
+  animation: df-drift 60s ease-in-out infinite alternate;
+}
+@keyframes df-drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-28px);
+  }
+}
+
+/* CRT row structure: hairlines of the page ground every 4px, crawling
+   downward. The -8px inset is two pattern periods, so the loop is seamless. */
+.df-scanlines {
+  position: absolute;
+  inset: -8px 0 0 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    color-mix(in oklab, var(--bg) 55%, transparent) 3px 4px
+  );
+  animation: df-scancrawl 1.6s linear infinite;
+}
+@keyframes df-scancrawl {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(8px);
+  }
+}
+
+/* the bright band of a slow vertical hold rolling down the tube.
+   Travel is in own-height units: -100% is fully above the frame and
+   560% (100 / 18% height, plus its own height) is fully below it. */
+.df-scanband {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 18%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--fg) 5%, transparent) 48%,
+    transparent
+  );
+  animation: df-scanroll 14s linear infinite;
+}
+@keyframes df-scanroll {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(560%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  /* Scroll-linked arrivals are driven by motion values written straight onto
+     the element style, which the rules above do not touch: they are neither a
+     transition nor an animation. Pin the cards open here instead, so a reader
+     who asked for less motion is not left looking at a 10%-opacity card.
+     It has to be !important to beat the inline style motion writes. */
+  #packages article {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
