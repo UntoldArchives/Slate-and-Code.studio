@@ -26,7 +26,7 @@ import { CONTACT_EVENT } from "@/lib/contact";
 const FIELD =
   "w-full rounded-none border-0 border-b border-[var(--rule)] bg-transparent py-[0.7em] text-[length:var(--fs-body)] text-[var(--fg)] caret-accent outline-none transition-colors duration-300 placeholder:text-[var(--fg-28)] focus:border-accent";
 
-const LABEL = "micro mb-[0.4em] block text-[var(--fg-45)]";
+const LABEL = "micro mb-[0.4em] block text-[var(--fg-70)]";
 
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
@@ -140,7 +140,7 @@ export default function ContactModal() {
               >
                 {/* meta rail */}
                 <div className="flex items-center justify-between border-b border-[var(--rule)] px-[clamp(20px,3.2vw,40px)] py-[1em]">
-                  <span className="micro text-[var(--fg-45)]">
+                  <span className="micro text-[var(--fg-70)]">
                     Inquiry, no handoffs
                   </span>
                   <button
@@ -233,7 +233,7 @@ export default function ContactModal() {
                       </button>
 
                       <p
-                        className="text-[length:var(--fs-micro)] text-[var(--fg-45)]"
+                        className="text-[length:var(--fs-micro)] text-[var(--fg-70)]"
                         aria-live="polite"
                       >
                         {sent ? (

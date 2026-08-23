@@ -91,7 +91,7 @@ export default function Footer() {
         {/* the actual ask, before the mark */}
         <div className="gut flex flex-wrap items-start justify-between gap-[clamp(28px,4vw,80px)]">
           <div>
-            <span className="micro block text-[var(--fg-45)]">
+            <span className="micro block text-[var(--fg-70)]">
               Have something in mind
             </span>
             <a
@@ -103,7 +103,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <nav className="micro flex flex-col items-start gap-[0.9em] text-[var(--fg-45)] sm:items-end">
+          <nav className="micro flex flex-col items-start gap-[0.9em] text-[var(--fg-70)] sm:items-end">
             {NAV.map((n) =>
               onHome && n.target ? (
                 <button
@@ -132,17 +132,21 @@ export default function Footer() {
         <div
           className="relative w-full px-[var(--edge)]"
           style={{ height: MARK_H }}
+          role="img"
           aria-label="Slate & Code"
         >
-          {BAND_TRAVEL.map((_, i) => (
-            <Band key={i} index={i} progress={progress} />
-          ))}
+          {/* five copies of the word, one per band: read once via the label */}
+          <div aria-hidden className="contents">
+            {BAND_TRAVEL.map((_, i) => (
+              <Band key={i} index={i} progress={progress} />
+            ))}
+          </div>
         </div>
       </div>
 
       {/* socials */}
       <div className="gut mt-[clamp(28px,3.4vw,72px)] flex items-center justify-between">
-        <span className="micro hidden text-[var(--fg-45)] sm:block">
+        <span className="micro hidden text-[var(--fg-70)] sm:block">
           Available for new work
         </span>
         <div className="flex items-center gap-[clamp(16px,1.6vw,34px)]">
@@ -165,7 +169,7 @@ export default function Footer() {
       </div>
 
       {/* bottom bar */}
-      <div className="gut micro mt-[clamp(20px,2.2vw,44px)] flex items-center justify-between border-t border-[var(--rule)] py-[clamp(14px,1.1vw,24px)] text-[var(--fg-45)]">
+      <div className="gut micro mt-[clamp(20px,2.2vw,44px)] flex items-center justify-between border-t border-[var(--rule)] py-[clamp(14px,1.1vw,24px)] text-[var(--fg-70)]">
         <span>&copy; 2026 Slate &amp; Code Studio</span>
         <span className="hidden md:block">slateandcode.studio</span>
         <button

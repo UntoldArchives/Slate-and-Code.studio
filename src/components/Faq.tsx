@@ -51,7 +51,7 @@ export default function Faq() {
           href={LINKS.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="micro text-[var(--fg-45)] transition-colors duration-300 hover:text-accent"
+          className="micro text-[var(--fg-70)] transition-colors duration-300 hover:text-accent"
         >
           Or on Instagram
         </a>

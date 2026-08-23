@@ -83,8 +83,12 @@ export default function Hero() {
           ))}
         </h1>
 
-        {/* the ghost line tucked under the mark, as in the frame */}
+        {/* the ghost line tucked under the mark, as in the frame. At 19% it is
+            texture, well under any contrast floor, so readers get the line
+            once in plain text and the ghost itself is hidden from them. */}
+        <p className="sr-only">Websites, software, systems.</p>
         <motion.p
+          aria-hidden
           className="gut display whitespace-nowrap text-[var(--fg)] opacity-[0.19]"
           style={{ fontSize: `calc(${WORDMARK_SIZE} * 0.1779)` }}
           initial={{ opacity: 0 }}

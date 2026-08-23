@@ -147,6 +147,13 @@ body {
   color: #fff;
 }
 
+/* one focus ring for everything reachable from the keyboard, in the accent.
+   Only for keyboard focus: a pointer click does not draw it. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 /* ---------------------------------------------------------------------------
    Small shared primitives
 --------------------------------------------------------------------------- */

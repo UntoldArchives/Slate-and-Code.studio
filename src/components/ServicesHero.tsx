@@ -54,7 +54,10 @@ export default function ServicesHero() {
           ))}
         </h1>
 
+        {/* ghost line: texture at 19%, so it is read once in plain text instead */}
+        <p className="sr-only">Websites, business tools, systems.</p>
         <motion.p
+          aria-hidden
           className="gut display whitespace-nowrap text-[var(--fg)] opacity-[0.19]"
           style={{ fontSize: `calc(${TITLE_SIZE} * 0.1779)` }}
           initial={{ opacity: 0 }}
@@ -75,7 +78,7 @@ export default function ServicesHero() {
           stagger={0.026}
         />
         <motion.p
-          className="mt-[0.9em] w-[min(44vw,100%)] text-[length:var(--fs-body)] leading-[1.45] text-[var(--fg-45)] max-lg:w-full"
+          className="mt-[0.9em] w-[min(44vw,100%)] text-[length:var(--fs-body)] leading-[1.45] text-[var(--fg-70)] max-lg:w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2, ease: [...EASE_HOUSE] }}

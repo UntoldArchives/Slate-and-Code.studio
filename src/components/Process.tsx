@@ -82,9 +82,9 @@ function Step({ step, index }: { step: (typeof STEPS)[number]; index: number }) 
         <span className="micro shrink-0 text-accent">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <p className="text-[length:var(--fs-step)] font-medium leading-[1.05] tracking-[-0.02em] text-[var(--fg)]">
+        <h3 className="text-[length:var(--fs-step)] font-medium leading-[1.05] tracking-[-0.02em] text-[var(--fg)]">
           {step.title}
-        </p>
+        </h3>
       </motion.div>
 
       {/* the icon for this step — beside the title on a phone, in its own

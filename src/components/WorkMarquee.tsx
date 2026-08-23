@@ -418,7 +418,7 @@ export default function WorkMarquee() {
         role="group"
         aria-roledescription="carousel"
         aria-label="Selected work. Use the left and right arrow keys to move between projects."
-        className="mt-[clamp(26px,3vw,64px)] overflow-hidden [touch-action:pan-y] focus-visible:outline-none md:cursor-none"
+        className="mt-[clamp(26px,3vw,64px)] overflow-hidden [touch-action:pan-y] focus-visible:outline-offset-[-2px] md:cursor-none"
         onPointerMove={onPointerMove}
         onPointerEnter={() => setHovering(true)}
         onPointerLeave={() => {
