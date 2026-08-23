@@ -375,13 +375,22 @@ body {
     transition-duration: 0.001ms !important;
   }
 
-  /* Scroll-linked arrivals are driven by motion values written straight onto
-     the element style, which the rules above do not touch: they are neither a
-     transition nor an animation. Pin the cards open here instead, so a reader
-     who asked for less motion is not left looking at a 10%-opacity card.
-     It has to be !important to beat the inline style motion writes. */
+  /* Reveals and scroll-linked arrivals are driven by motion values written
+     straight onto the element style, which the rules above do not touch:
+     they are neither a transition nor an animation. Every element that
+     arrives on the page wears .rm-pin, and here it is pinned to its resolved
+     state from the first paint, before any script has run, so nothing is
+     parked hidden, blurred, or at 10% opacity for a reader who asked for
+     less motion. It has to be !important to beat the inline style writes. */
+  .rm-pin,
   #packages article {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+  }
+
+  /* the ghost lines under the two hero marks resolve to 19%, not 100% */
+  .rm-ghost {
+    opacity: 0.19 !important;
   }
 }

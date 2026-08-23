@@ -106,7 +106,7 @@ function DataField() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 select-none"
+      className="rm-pin pointer-events-none absolute inset-0 select-none"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -198,7 +198,7 @@ export default function Manifesto() {
             viewport={{ once: true, amount: 0.7 }}
           >
             <motion.p
-              className={`font-thunder whitespace-nowrap font-bold uppercase leading-[0.921] ${
+              className={`rm-pin font-thunder whitespace-nowrap font-bold uppercase leading-[0.921] ${
                 w.accent ? "text-accent" : "text-[var(--fg)]"
               }`}
               style={{ fontSize: fig(WORD_SIZE) }}
@@ -225,7 +225,7 @@ export default function Manifesto() {
               viewport={{ once: true, amount: 0.7 }}
             >
               <motion.p
-                className={`font-thunder whitespace-nowrap text-[16vw] font-bold uppercase leading-[0.921] ${
+                className={`rm-pin font-thunder whitespace-nowrap text-[16vw] font-bold uppercase leading-[0.921] ${
                   w.accent ? "text-accent" : "text-[var(--fg)]"
                 }`}
                 variants={wordRise}

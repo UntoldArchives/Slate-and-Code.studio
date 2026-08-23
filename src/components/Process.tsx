@@ -76,7 +76,7 @@ function Step({ step, index }: { step: (typeof STEPS)[number]; index: number }) 
     >
       {/* number + title */}
       <motion.div
-        className="flex items-baseline gap-[clamp(12px,1.4vw,30px)]"
+        className="rm-pin flex items-baseline gap-[clamp(12px,1.4vw,30px)]"
         style={{ opacity: textOpacity, y: textY }}
       >
         <span className="micro shrink-0 text-accent">
@@ -98,7 +98,7 @@ function Step({ step, index }: { step: (typeof STEPS)[number]; index: number }) 
             y: iconY,
             x: step.drift,
           }}
-          className="text-[var(--fg)]"
+          className="rm-pin text-[var(--fg)]"
         >
           <step.Icon className="size-[clamp(52px,5.2vw,110px)]" />
         </motion.div>
@@ -106,7 +106,7 @@ function Step({ step, index }: { step: (typeof STEPS)[number]; index: number }) 
 
       {/* the description, always on the page */}
       <motion.p
-        className="col-span-2 max-w-[46ch] text-[length:var(--fs-body)] leading-[1.42] text-[var(--fg-70)] md:col-span-1"
+        className="rm-pin col-span-2 max-w-[46ch] text-[length:var(--fs-body)] leading-[1.42] text-[var(--fg-70)] md:col-span-1"
         style={{ opacity: textOpacity, y: textY }}
       >
         {step.desc}

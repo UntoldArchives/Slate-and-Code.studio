@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-50"
+      className="rm-pin fixed inset-x-0 top-0 z-50"
       initial={{ y: "-110%" }}
       animate={{ y: "0%" }}
       transition={{ duration: 0.9, delay: 0.15, ease: [...EASE_HOUSE] }}

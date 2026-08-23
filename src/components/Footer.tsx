@@ -53,7 +53,7 @@ function Band({
       style={{ top: `calc(${BAND_H} * ${index})`, height: BAND_H }}
     >
       <motion.p
-        className="display absolute left-0 whitespace-nowrap text-[var(--fg)] will-change-transform"
+        className="rm-pin display absolute left-0 whitespace-nowrap text-[var(--fg)] will-change-transform"
         style={{ top: `calc(${BAND_H} * ${-index})`, fontSize: FS, y }}
       >
         Slate &amp; Code

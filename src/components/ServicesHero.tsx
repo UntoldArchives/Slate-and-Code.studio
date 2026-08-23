@@ -42,7 +42,7 @@ export default function ServicesHero() {
               aria-hidden
             >
               <motion.span
-                className="inline-block will-change-transform"
+                className="rm-pin inline-block will-change-transform"
                 variants={glyph}
                 custom={SLOT.get(i) ?? 0}
                 initial="hidden"
@@ -58,7 +58,7 @@ export default function ServicesHero() {
         <p className="sr-only">Websites, business tools, systems.</p>
         <motion.p
           aria-hidden
-          className="gut display whitespace-nowrap text-[var(--fg)] opacity-[0.19]"
+          className="rm-ghost gut display whitespace-nowrap text-[var(--fg)] opacity-[0.19]"
           style={{ fontSize: `calc(${TITLE_SIZE} * 0.1779)` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.19 }}
@@ -78,7 +78,7 @@ export default function ServicesHero() {
           stagger={0.026}
         />
         <motion.p
-          className="mt-[0.9em] w-[min(44vw,100%)] text-[length:var(--fs-body)] leading-[1.45] text-[var(--fg-70)] max-lg:w-full"
+          className="rm-pin mt-[0.9em] w-[min(44vw,100%)] text-[length:var(--fs-body)] leading-[1.45] text-[var(--fg-70)] max-lg:w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2, ease: [...EASE_HOUSE] }}

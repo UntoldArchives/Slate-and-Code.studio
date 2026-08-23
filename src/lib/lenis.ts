@@ -16,9 +16,17 @@ export function scrollToTarget(target: string | number) {
   const lenis = getLenis();
   if (lenis) {
     lenis.scrollTo(target, { duration: 1.6 });
-  } else if (typeof target === "string") {
-    document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+  /* no Lenis means the visitor asked for less motion: jump, do not glide */
+  const behavior: ScrollBehavior = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches
+    ? "auto"
+    : "smooth";
+  if (typeof target === "string") {
+    document.querySelector(target)?.scrollIntoView({ behavior });
   } else {
-    window.scrollTo({ top: target, behavior: "smooth" });
+    window.scrollTo({ top: target, behavior });
   }
 }

@@ -71,7 +71,7 @@ export default function Hero() {
               aria-hidden
             >
               <motion.span
-                className="inline-block will-change-transform"
+                className="rm-pin inline-block will-change-transform"
                 variants={glyph}
                 custom={SLOT.get(i) ?? 0}
                 initial="hidden"
@@ -89,7 +89,7 @@ export default function Hero() {
         <p className="sr-only">Websites, software, systems.</p>
         <motion.p
           aria-hidden
-          className="gut display whitespace-nowrap text-[var(--fg)] opacity-[0.19]"
+          className="rm-ghost gut display whitespace-nowrap text-[var(--fg)] opacity-[0.19]"
           style={{ fontSize: `calc(${WORDMARK_SIZE} * 0.1779)` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.19 }}

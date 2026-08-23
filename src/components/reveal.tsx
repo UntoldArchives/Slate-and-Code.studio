@@ -64,7 +64,7 @@ export function WordsReveal({
       {words.map((w, i) => (
         <Fragment key={i}>
           <motion.span
-            className="inline-block will-change-[transform,filter,opacity]"
+            className="rm-pin inline-block will-change-[transform,filter,opacity]"
             variants={word}
           >
             {w}
@@ -117,7 +117,7 @@ export function MaskReveal({
         ? { whileInView: "visible", viewport: { once: true, amount } }
         : { animate: "visible" })}
     >
-      <motion.div className={innerClassName} variants={inner}>
+      <motion.div className={`rm-pin ${innerClassName ?? ""}`} variants={inner}>
         {children}
       </motion.div>
     </motion.div>
