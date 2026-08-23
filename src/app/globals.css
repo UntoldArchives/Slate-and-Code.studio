@@ -2,7 +2,10 @@
 
 /* ---------------------------------------------------------------------------
    Typefaces — Thunder (display) + Neue Montreal (everything else).
-   Both are self-hosted from /public/fonts as woff2.
+   Both are self-hosted from /public/fonts as woff2, subset to Latin plus
+   punctuation and arrows (~12-17KB each). Only the weights the site sets
+   are declared: Thunder 500/700, Neue Montreal 400/500/700. The full
+   originals and the unused cuts live in assets/fonts-source.
 --------------------------------------------------------------------------- */
 
 @font-face {
@@ -11,13 +14,7 @@
   font-weight: 500;
   font-style: normal;
   font-display: block;
-}
-@font-face {
-  font-family: "Thunder";
-  src: url("/fonts/Thunder-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: block;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-203A, U+2190-2199;
 }
 @font-face {
   font-family: "Thunder";
@@ -25,28 +22,16 @@
   font-weight: 700;
   font-style: normal;
   font-display: block;
-}
-@font-face {
-  font-family: "Thunder";
-  src: url("/fonts/Thunder-Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-  font-display: block;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-203A, U+2190-2199;
 }
 
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
 @font-face {
   font-family: "Neue Montreal";
   src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-203A, U+2190-2199;
 }
 @font-face {
   font-family: "Neue Montreal";
@@ -54,6 +39,7 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-203A, U+2190-2199;
 }
 @font-face {
   font-family: "Neue Montreal";
@@ -61,6 +47,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-203A, U+2190-2199;
 }
 
 /* ---------------------------------------------------------------------------
