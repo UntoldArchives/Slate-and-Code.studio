@@ -463,7 +463,10 @@ export default function WorkMarquee() {
                   aria-hidden={ghost || undefined}
                   className="flex shrink-0 flex-col"
                 >
-                  <div className="h-[clamp(180px,34vh,460px)] overflow-hidden bg-[var(--fg-14)]">
+                  {/* a tile is twice as wide as it is tall; the 40vw cap
+                      keeps one within the screen on a phone, where 34vh
+                      would set it half again as wide as the viewport */}
+                  <div className="h-[min(clamp(180px,34vh,460px),40vw)] overflow-hidden bg-[var(--fg-14)]">
                     <Image
                       src={work.src}
                       alt={ghost ? "" : work.alt}

@@ -82,11 +82,12 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
-      className="relative flex flex-col justify-end overflow-hidden pb-0 pt-[clamp(40px,6vw,130px)] md:min-h-svh"
+      className="relative flex flex-col justify-end overflow-hidden pb-0 pt-[clamp(40px,6vw,130px)] lg:min-h-svh"
     >
-      {/* on a phone the two blocks stack at the bottom; on desktop they take
-          the full height and push apart */}
-      <div className="flex flex-1 flex-col justify-end gap-[clamp(50px,7vw,140px)] md:justify-between">
+      {/* on a phone or tablet the two blocks stack at the bottom; on desktop
+          they take the full height and push apart. A portrait tablet is tall
+          and its mark is small, so the desktop treatment leaves a void. */}
+      <div className="flex flex-1 flex-col justify-end gap-[clamp(50px,7vw,140px)] lg:justify-between">
         {/* the actual ask, before the mark */}
         <div className="gut flex flex-wrap items-start justify-between gap-[clamp(28px,4vw,80px)]">
           <div>

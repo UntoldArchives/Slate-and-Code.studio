@@ -24,8 +24,10 @@ const glyph: Variants = {
 
 export default function ServicesHero() {
   return (
-    <section className="relative flex min-h-svh flex-col">
-      <div className="min-h-[clamp(64px,8vh,120px)] flex-[4.07]" />
+    <section className="relative flex min-h-[76svh] flex-col lg:min-h-svh">
+      {/* same collapse as the home hero: the frame's ratios assume a mark a
+          third of the height, so on a phone or tablet the voids shrink */}
+      <div className="min-h-[clamp(64px,8vh,120px)] flex-[1.6] lg:flex-[4.07]" />
 
       <div className="shrink-0">
         <h1
@@ -63,7 +65,7 @@ export default function ServicesHero() {
         </motion.p>
       </div>
 
-      <div className="flex-[1.86]" />
+      <div className="flex-[1] lg:flex-[1.86]" />
 
       <div className="gut shrink-0">
         <WordsReveal
@@ -83,7 +85,7 @@ export default function ServicesHero() {
         </motion.p>
       </div>
 
-      <div className="min-h-[clamp(24px,4vh,70px)] flex-[1]" />
+      <div className="min-h-[clamp(24px,4vh,70px)] flex-[0.9] lg:flex-[1]" />
     </section>
   );
 }

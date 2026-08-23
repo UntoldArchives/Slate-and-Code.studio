@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { EASE_HOUSE } from "@/lib/anim";
 import { generateField } from "@/lib/datafield";
 
@@ -91,6 +91,15 @@ const COL_DRIFT = [
 ];
 
 const fig = (n: number) => `calc(var(--fig) * ${n})`;
+
+/* one masked rise for a display word, on every breakpoint */
+const wordRise: Variants = {
+  hidden: { y: "108%" },
+  visible: {
+    y: "0%",
+    transition: { duration: 1.15, ease: [...EASE_HOUSE] },
+  },
+};
 
 /* the ground: fills whatever positioned box it is rendered into */
 function DataField() {
@@ -193,13 +202,7 @@ export default function Manifesto() {
                 w.accent ? "text-accent" : "text-[var(--fg)]"
               }`}
               style={{ fontSize: fig(WORD_SIZE) }}
-              variants={{
-                hidden: { y: "108%" },
-                visible: {
-                  y: "0%",
-                  transition: { duration: 1.15, ease: [...EASE_HOUSE] },
-                },
-              }}
+              variants={wordRise}
             >
               {w.text}
             </motion.p>
@@ -214,15 +217,22 @@ export default function Manifesto() {
         <DataField />
         <div className="gut relative flex flex-col gap-[9vw] py-[16vw]">
           {WORDS.map((w, i) => (
-            <div key={i} className={`overflow-hidden ${MOBILE_ALIGN[i]}`}>
-              <p
+            <motion.div
+              key={i}
+              className={`overflow-hidden ${MOBILE_ALIGN[i]}`}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.7 }}
+            >
+              <motion.p
                 className={`font-thunder whitespace-nowrap text-[16vw] font-bold uppercase leading-[0.921] ${
                   w.accent ? "text-accent" : "text-[var(--fg)]"
                 }`}
+                variants={wordRise}
               >
                 {w.text}
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           ))}
         </div>
       </div>
