@@ -7,13 +7,7 @@ import { motion } from "motion/react";
 import { EASE_HOUSE } from "@/lib/anim";
 import { openContact } from "@/lib/contact";
 import { scrollToTarget } from "@/lib/lenis";
-
-/* micro nav item with a rule that wipes in from the left on hover */
-const ITEM =
-  "group relative micro text-[var(--fg-70)] transition-colors duration-300 hover:text-[var(--fg)]";
-
-const RULE =
-  "absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100";
+import { TEXT_LINK as ITEM, TEXT_LINK_RULE as RULE } from "@/lib/ui";
 
 export default function Navbar() {
   const [stuck, setStuck] = useState(false);
