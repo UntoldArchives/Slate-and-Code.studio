@@ -103,13 +103,15 @@ export default function Footer() {
             </a>
           </div>
 
-          <nav className="micro flex flex-col items-start gap-[0.9em] text-[var(--fg-70)] sm:items-end">
+          {/* each item is padded up to a 24px tap target without moving the
+              column: the gap shrinks by what the padding adds */}
+          <nav className="micro flex flex-col items-start gap-[0.2em] text-[var(--fg-70)] sm:items-end">
             {NAV.map((n) =>
               onHome && n.target ? (
                 <button
                   key={n.label}
                   onClick={() => scrollToTarget(n.target as string)}
-                  className="transition-colors duration-300 hover:text-accent"
+                  className="inline-flex min-h-[24px] items-center transition-colors duration-300 hover:text-accent"
                 >
                   {n.label}
                 </button>
@@ -117,7 +119,7 @@ export default function Footer() {
                 <Link
                   key={n.label}
                   href={n.href}
-                  className="transition-colors duration-300 hover:text-accent"
+                  className="inline-flex min-h-[24px] items-center transition-colors duration-300 hover:text-accent"
                 >
                   {n.label}
                 </Link>
@@ -174,7 +176,7 @@ export default function Footer() {
         <span className="hidden md:block">slateandcode.studio</span>
         <button
           onClick={() => scrollToTarget(0)}
-          className="transition-colors duration-300 hover:text-accent"
+          className="-my-[8px] py-[8px] transition-colors duration-300 hover:text-accent"
         >
           Back to top &#8593;
         </button>

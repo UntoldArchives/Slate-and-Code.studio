@@ -45,7 +45,7 @@ export default function Navbar() {
             <button
               onClick={() => scrollToTarget(0)}
               className="font-thunder text-[clamp(19px,1.42vw,29px)] font-medium leading-none tracking-[0.01em] text-[var(--fg)]"
-              aria-label="Slate and Code, back to top"
+              aria-label="S&C. Slate and Code, back to top"
             >
               S&amp;C
             </button>
@@ -53,7 +53,7 @@ export default function Navbar() {
             <Link
               href="/"
               className="font-thunder text-[clamp(19px,1.42vw,29px)] font-medium leading-none tracking-[0.01em] text-[var(--fg)]"
-              aria-label="Slate and Code, home"
+              aria-label="S&C. Slate and Code, home"
             >
               S&amp;C
             </Link>
