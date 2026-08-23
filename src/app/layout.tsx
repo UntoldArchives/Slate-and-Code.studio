@@ -2,11 +2,33 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ContactModal from "@/components/ContactModal";
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
+
+const DESCRIPTION =
+  "A studio of one, by design. The same person who designs the screen writes the code behind it and directs the content that fills it.";
 
 export const metadata: Metadata = {
-  title: "Slate & Code Studio",
-  description:
-    "A studio of one, by design. The same person who designs the screen writes the code behind it and directs the content that fills it.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} · Websites, Software, Systems`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    url: "/",
+    title: `${SITE_NAME} · Websites, Software, Systems`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} · Websites, Software, Systems`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
+  },
+  alternates: { canonical: "/" },
 };
 
 /* the faces on screen at first paint: the two hero marks, the nav labels and
