@@ -141,6 +141,14 @@ body {
   outline-offset: 3px;
 }
 
+/* form fields show focus by their underline turning accent, so the ring
+   would double up */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
 /* ---------------------------------------------------------------------------
    Small shared primitives
 --------------------------------------------------------------------------- */

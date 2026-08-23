@@ -12,6 +12,7 @@ import { cubic, EASE_HOUSE, EASE_OUT } from "@/lib/anim";
 import { LINKS } from "@/lib/links";
 import { getLenis } from "@/lib/lenis";
 import { CONTACT_EVENT } from "@/lib/contact";
+import { PACKAGES } from "@/lib/services";
 
 /*
   The contact form, in the house dress: a solid panel on a hairline 8% rule,
@@ -27,6 +28,66 @@ const FIELD =
   "w-full rounded-none border-0 border-b border-[var(--rule)] bg-transparent py-[0.7em] text-[length:var(--fs-body)] text-[var(--fg)] caret-accent outline-none transition-colors duration-300 placeholder:text-[var(--fg-28)] focus:border-accent";
 
 const LABEL = "micro mb-[0.4em] block text-[var(--fg-70)]";
+
+/* the budget bands are the four /services tiers, worded off the same data so
+   the form and the price list cannot drift apart */
+const BUDGETS = [
+  ...PACKAGES.map((p) => ({
+    value: p.name,
+    label: `${p.name}, ${[p.priceLead, p.price, p.priceTail]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase()}`,
+  })),
+  { value: "Not sure yet", label: "Not sure yet" },
+];
+
+const TIMELINES = [
+  "As soon as possible",
+  "Within a month",
+  "In the next few months",
+  "No fixed date",
+];
+
+/* a native select in the field dress: the underline, the caret, and the
+   site's arrow in place of the browser's chevron */
+function Select({
+  id,
+  name,
+  options,
+  placeholder,
+}: {
+  id: string;
+  name: string;
+  options: { value: string; label: string }[];
+  placeholder: string;
+}) {
+  return (
+    <span className="relative block">
+      <select
+        id={id}
+        name={name}
+        defaultValue=""
+        className={`${FIELD} appearance-none pr-[1.6em] [&:has(option[value='']:checked)]:text-[var(--fg-28)] [&>option]:bg-[var(--color-ink)] [&>option]:text-[var(--color-paper)]`}
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-[length:var(--fs-body)] text-[var(--fg-70)]"
+      >
+        &#8595;
+      </span>
+    </span>
+  );
+}
 
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
@@ -66,7 +127,7 @@ export default function ContactModal() {
     if (e.key !== "Tab" || !panelRef.current) return;
     const nodes = Array.from(
       panelRef.current.querySelectorAll<HTMLElement>(
-        "a[href], button, input, textarea"
+        "a[href], button, input, textarea, select"
       )
     ).filter((n) => !n.hasAttribute("disabled"));
     if (!nodes.length) return;
@@ -87,8 +148,20 @@ export default function ContactModal() {
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
+    const budget = String(data.get("budget") ?? "").trim();
+    const timeline = String(data.get("timeline") ?? "").trim();
     const subject = `Project inquiry${name ? ` from ${name}` : ""}`;
-    const body = `${message}\n\n${name}${email ? `\n${email}` : ""}`;
+    const body = [
+      message,
+      "",
+      budget ? `Budget: ${budget}` : "",
+      timeline ? `Timeline: ${timeline}` : "",
+      "",
+      name,
+      email,
+    ]
+      .filter((line, i, all) => line !== "" || all[i - 1] !== "")
+      .join("\n");
     window.location.href = `mailto:${LINKS.email}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
@@ -204,8 +277,30 @@ export default function ContactModal() {
                           name="message"
                           required
                           rows={4}
-                          placeholder="What are you making, and when does it need to exist?"
+                          placeholder="What are you making, and what should it do?"
                           className={`${FIELD} resize-none`}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="c-budget" className={LABEL}>
+                          Budget
+                        </label>
+                        <Select
+                          id="c-budget"
+                          name="budget"
+                          options={BUDGETS}
+                          placeholder="Pick a range"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="c-timeline" className={LABEL}>
+                          Timeline
+                        </label>
+                        <Select
+                          id="c-timeline"
+                          name="timeline"
+                          options={TIMELINES.map((t) => ({ value: t, label: t }))}
+                          placeholder="When does it need to exist?"
                         />
                       </div>
                     </div>
