@@ -9,7 +9,7 @@ import { openContact } from "@/lib/contact";
 */
 export default function ContactCTA() {
   return (
-    <section className="gut pb-[clamp(20px,2vw,44px)]">
+    <section id="contact" className="gut pb-[clamp(20px,2vw,44px)]">
       <button
         type="button"
         onClick={openContact}

@@ -4,8 +4,8 @@
    Typefaces — Thunder (display) + Neue Montreal (everything else).
    Both are self-hosted from /public/fonts as woff2, subset to Latin plus
    punctuation and arrows (~12-17KB each). Only the weights the site sets
-   are declared: Thunder 500/700, Neue Montreal 400/500/700. The full
-   originals and the unused cuts live in assets/fonts-source.
+   are declared: Thunder 500/700, Neue Montreal 400/500/700. The licensed
+   originals and the unused cuts stay out of the repo (see .gitignore).
 --------------------------------------------------------------------------- */
 
 @font-face {

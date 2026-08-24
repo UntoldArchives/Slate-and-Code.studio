@@ -26,3 +26,9 @@ next-env.d.ts
 
 # local reference material
 /reference
+
+# design sources, not build inputs: the unsubsetted licensed font files and the
+# full-size work screenshots. What the site serves is committed under /public
+# (subset woff2, resized webp). Keeping the originals out of a public repo
+# avoids redistributing the font licences and ~12MB of dead weight.
+/assets
