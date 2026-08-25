@@ -31,10 +31,15 @@ const CARD =
 
 const PRICE_SIZE = "clamp(38px, 3.5vw, 76px)";
 
-/* index, name, price. The lead line is always emitted, blank when a package
-   has no lead word, so every price in a row sits on one baseline and the rule
-   under it lands at the same height across all three cards. The range tail
-   runs alongside the figure rather than under it, for the same reason. */
+/* index, name, price, scope. The lead and scope lines are always emitted,
+   blank when a package carries neither, so every price in a row sits on one
+   baseline and the rule under it lands at the same height across all three
+   cards. The range tail runs alongside the figure rather than under it, for
+   the same reason.
+
+   The scope line is the counterweight to a starting price: "From $2,500" on
+   its own reads as a floor, "From $2,500 / 5 to 12 pages" reads as a rate, and
+   a larger brief can place itself above it instead of below. */
 function Head({ pack, index }: { pack: Package; index: number }) {
   return (
     <>
@@ -60,6 +65,12 @@ function Head({ pack, index }: { pack: Package; index: number }) {
           {pack.priceTail && (
             <span className="micro text-[var(--fg-70)]">{pack.priceTail}</span>
           )}
+        </span>
+
+        {/* the scope the figure buys, always emitted so the rule under it
+            lands on one line across the row */}
+        <span className="mt-[0.9em] block text-[length:var(--fs-small)] leading-[1.4] text-[var(--fg-70)]">
+          {pack.scope ?? " "}
         </span>
       </div>
     </>

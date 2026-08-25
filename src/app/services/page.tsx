@@ -9,7 +9,7 @@ import { OG_IMAGE } from "@/lib/site";
 
 const TITLE = "Services and Pricing";
 const DESCRIPTION =
-  "Websites from $1,000, business websites from $2,500, custom business tools from $3,000. Designed, built, and shipped by one studio.";
+  "Websites from $1,500, business websites from $2,500, custom business tools from $4,000. Designed, built, and shipped by one studio.";
 
 export const metadata: Metadata = {
   title: TITLE,
